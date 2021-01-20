@@ -1,7 +1,7 @@
 version = `agvtool vers -terse`
 
 Pod::Spec.new do |s|
-  s.name = 'Adyen'
+  s.name = 'AdyenLegacy'
   s.version = version
   s.summary = "Adyen SDK for iOS"
   s.description = <<-DESC
@@ -25,13 +25,13 @@ Pod::Spec.new do |s|
   # Payment Methods
   s.subspec 'ApplePay' do |plugin|
     plugin.source_files = 'Adyen/Plugins/ApplePay/**/*.swift'
-    plugin.dependency 'Adyen/Core'
-    plugin.dependency 'Adyen/CoreUI'
+    plugin.dependency 'AdyenLegacy/Core'
+    plugin.dependency 'AdyenLegacy/CoreUI'
   end
 
   s.subspec 'Cards' do |plugin|
-    plugin.dependency 'Adyen/Core'
-    plugin.dependency 'Adyen/CoreUI'
+    plugin.dependency 'AdyenLegacy/Core'
+    plugin.dependency 'AdyenLegacy/CoreUI'
     plugin.dependency 'AdyenCSE', '~> 1.1'
     plugin.source_files = 'Adyen/Plugins/Cards/**/*.swift'
     plugin.resource_bundles = {
@@ -43,27 +43,27 @@ Pod::Spec.new do |s|
 
   s.subspec 'Ideal' do |plugin|
     plugin.source_files = 'Adyen/Plugins/Ideal/**/*.swift'
-    plugin.dependency 'Adyen/CoreUI'
-    plugin.dependency 'Adyen/Core'
+    plugin.dependency 'AdyenLegacy/CoreUI'
+    plugin.dependency 'AdyenLegacy/Core'
   end
 
   s.subspec 'SEPADirectDebit' do |plugin|
     plugin.source_files = 'Adyen/Plugins/SEPADirectDebit/**/*.swift'
-    plugin.dependency 'Adyen/Core'
-    plugin.dependency 'Adyen/CoreUI'
+    plugin.dependency 'AdyenLegacy/Core'
+    plugin.dependency 'AdyenLegacy/CoreUI'
   end
 
   s.subspec 'MOLPay' do |plugin|
     plugin.source_files = 'Adyen/Plugins/MOLPay/**/*.swift'
-    plugin.dependency 'Adyen/Core'
-    plugin.dependency 'Adyen/CoreUI'
+    plugin.dependency 'AdyenLegacy/Core'
+    plugin.dependency 'AdyenLegacy/CoreUI'
   end
 
   # Internals
   s.subspec 'UI' do |plugin|
     plugin.source_files = 'Adyen/UI/**/*.swift'
-    plugin.dependency 'Adyen/Core'
-    plugin.dependency 'Adyen/CoreUI'
+    plugin.dependency 'AdyenLegacy/Core'
+    plugin.dependency 'AdyenLegacy/CoreUI'
   end
 
   s.subspec 'CoreUI' do |plugin|
@@ -74,6 +74,6 @@ Pod::Spec.new do |s|
             'Adyen/CoreUI/Assets/*.lproj/*.strings'
         ]
     }
-    plugin.dependency 'Adyen/Core'
+    plugin.dependency 'AdyenLegacy/Core'
   end
 end
