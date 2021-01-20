@@ -99,7 +99,7 @@ internal class PaymentServer {
             let appVersion = info["CFBundleShortVersionString"] as? String ?? "Unknown"
             let appBuild = info[kCFBundleVersionKey as String] as? String ?? "Unknown"
             let osNameVersion = "\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
-            let adyenVersion = "Adyen/\(Adyen.sdkVersion)"
+            let adyenVersion = "Adyen/\(gygSDKVersion)"
             
             return "\(executable)/\(appVersion) (\(bundle); build:\(appBuild); \(UIDevice.current.model); \(osNameVersion); \(UIDevice.current.modelIdentifier)) \(adyenVersion)"
         }

@@ -15,7 +15,7 @@ internal struct PaymentRequestToken: Encodable {
     internal var tokenVersion = "1.0"
     
     /// The Checkout SDK version.
-    internal var sdkVersion = Adyen.sdkVersion
+    internal var sdkVersion = gygSDKVersion
     
     /// The API version to use.
     internal var apiVersion = "6"
