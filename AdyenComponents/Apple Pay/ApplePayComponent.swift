@@ -72,7 +72,6 @@ public class ApplePayComponent: NSObject, PresentableComponent, PaymentComponent
         self.apiContext = apiContext
         self.paymentAuthorizationViewController = viewController
         self.applePayPaymentMethod = paymentMethod
-        self.payment = payment
         super.init()
 
         viewController.delegate = self
@@ -99,7 +98,7 @@ public class ApplePayComponent: NSObject, PresentableComponent, PaymentComponent
     private func createPaymentAuthorizationViewController() -> PKPaymentAuthorizationViewController {
         if paymentAuthorizationViewController == nil {
             let supportedNetworks = applePayPaymentMethod.supportedNetworks
-            let request = configuration.createPaymentRequest(payment: payment, supportedNetworks: supportedNetworks)
+            let request = configuration.createPaymentRequest(supportedNetworks: supportedNetworks)
             paymentAuthorizationViewController = Self.createPaymentAuthorizationViewController(from: request)
             paymentAuthorizationViewController?.delegate = self
             paymentAuthorizationCompletion = nil

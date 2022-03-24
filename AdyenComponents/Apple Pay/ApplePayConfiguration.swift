@@ -1,9 +1,7 @@
 //
-//  ApplePayConfiguration.swift
-//  AdyenComponents
+// Copyright (c) 2022 Adyen N.V.
 //
-//  Created by Vladimir Abramichev on 15/03/2022.
-//  Copyright © 2022 Adyen. All rights reserved.
+// This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
 
 import Adyen
@@ -17,7 +15,8 @@ extension ApplePayComponent {
     /// Apple Pay component configuration.
     public struct Configuration {
 
-        public private(set) var payment: ApplePayPayment
+        /// The context of a current payment. Contains 
+        public let payment: ApplePayPayment
 
         /// The merchant identifier for apple pay.
         public var merchantIdentifier: String

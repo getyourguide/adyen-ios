@@ -75,7 +75,6 @@ internal final class PreApplePayComponent: PresentableComponent, FinalizableComp
 
         self.applePayComponent = try ApplePayComponent(paymentMethod: paymentMethod,
                                                        apiContext: apiContext,
-                                                       payment: payment,
                                                        configuration: applePayConfiguration)
         self.applePayComponent.delegate = self
     }
