@@ -4608,7 +4608,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1330;
 				ORGANIZATIONNAME = Adyen;
 				TargetAttributes = {
 					C96A8E2826CA800A000BB8C6 = {
