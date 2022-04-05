@@ -33,7 +33,7 @@ public struct ApplePayPayment {
         guard let lastItem = summaryItems.last, lastItem.amount.doubleValue >= 0 else {
             throw ApplePayComponent.Error.negativeGrandTotal
         }
-        guard summaryItems.filter({ $0.amount.isEqual(to: NSDecimalNumber.notANumber) }).count == 0 else {
+        guard summaryItems.contains(where: { $0.amount.isEqual(to: NSDecimalNumber.notANumber) }) == false else {
             throw ApplePayComponent.Error.invalidSummaryItem
         }
 
@@ -48,10 +48,24 @@ public struct ApplePayPayment {
     /// - Parameters:
     ///   - payment: The combination of amount and country code.
     ///   - localizationParameters: The localization parameters to control how strings are localized.
-    public init(payment: Payment, localizationParameters: LocalizationParameters? = nil) {
+    public init(payment: Payment, localizationParameters: LocalizationParameters? = nil) throws {
+        guard CountryCodeValidator().isValid(payment.countryCode) else {
+            throw ApplePayComponent.Error.invalidCountryCode
+        }
+        guard CurrencyCodeValidator().isValid(payment.amount.currencyCode) else {
+            throw ApplePayComponent.Error.invalidCurrencyCode
+        }
+
         let decimalValue = AmountFormatter.decimalAmount(payment.amount.value,
                                                          currencyCode: payment.amount.currencyCode,
                                                          localeIdentifier: localizationParameters?.locale)
+        guard decimalValue.doubleValue >= 0 else {
+            throw ApplePayComponent.Error.negativeGrandTotal
+        }
+        guard decimalValue.isEqual(to: NSDecimalNumber.notANumber) == false else {
+            throw ApplePayComponent.Error.invalidSummaryItem
+        }
+
         let totalString = localizedString(.applepayTotal, localizationParameters)
         self.init(payment: payment, summaryItems: [PKPaymentSummaryItem(label: totalString, amount: decimalValue)])
     }
