@@ -26,34 +26,24 @@ internal final class PreApplePayComponent: PresentableComponent, FinalizableComp
             self.localizationParameters = localizationParameters
         }
     }
-    
-    /// :nodoc:
-    internal let apiContext: APIContext
-    
-    /// :nodoc:
-    internal let paymentMethod: PaymentMethod
-    
-    /// :nodoc:
-    private var payment: Payment? { _payment }
-    
-    /// :nodoc:
-    private let _payment: Payment
-    
-    /// :nodoc:
-    internal weak var delegate: PaymentComponentDelegate?
-    
-    /// :nodoc:
-    internal weak var presentationDelegate: NavigationProtocol?
-    
-    /// :nodoc:
-    fileprivate let applePayComponent: ApplePayComponent
 
-    /// :nodoc:
+    private let payment: Payment
+
+    private let applePayComponent: ApplePayComponent
+
+    internal let apiContext: APIContext
+
+    internal let paymentMethod: PaymentMethod
+
+    internal weak var delegate: PaymentComponentDelegate?
+
+    internal weak var presentationDelegate: NavigationProtocol?
+
     internal let configuration: Configuration
     
     /// :nodoc:
     internal lazy var viewController: UIViewController = {
-        let view = PreApplePayView(model: createModel(with: _payment.amount))
+        let view = PreApplePayView(model: createModel(with: payment.amount))
         let viewController = ADYViewController(view: view, title: "Apple Pay")
         view.delegate = self
         
@@ -66,14 +56,12 @@ internal final class PreApplePayComponent: PresentableComponent, FinalizableComp
     /// :nodoc:
     internal init(paymentMethod: ApplePayPaymentMethod,
                   apiContext: APIContext,
-                  payment: Payment,
                   configuration: Configuration,
                   applePayConfiguration: ApplePayComponent.Configuration) throws {
         self.apiContext = apiContext
-        self._payment = payment
         self.paymentMethod = paymentMethod
         self.configuration = configuration
-
+        self.payment = applePayConfiguration.applePayPayment.payment
         self.applePayComponent = try ApplePayComponent(paymentMethod: paymentMethod,
                                                        apiContext: apiContext,
                                                        configuration: applePayConfiguration)

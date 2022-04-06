@@ -238,6 +238,7 @@ public final class DropInComponent: NSObject,
 
     internal func userDidCancel(_ component: Component) {
         stopLoading()
+        component.cancelIfNeeded()
         component.finalizeIfNeeded(with: false, completion: nil)
 
         if let component = (component as? PaymentComponent) ?? selectedPaymentComponent, paymentInProgress {

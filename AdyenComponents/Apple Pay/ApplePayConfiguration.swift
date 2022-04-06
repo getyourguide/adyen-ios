@@ -15,8 +15,8 @@ extension ApplePayComponent {
     /// Apple Pay component configuration.
     public struct Configuration {
 
-        /// The context of a current payment. Contains 
-        public let payment: ApplePayPayment
+        /// The context of a current payment. Contains
+        public let applePayPayment: ApplePayPayment
 
         /// The merchant identifier for apple pay.
         public var merchantIdentifier: String
@@ -39,7 +39,7 @@ extension ApplePayComponent {
 
         /// Initializes the configuration.
         ///
-        /// - Parameter summaryItems: The line items for this payment.
+        /// - Parameter payment: Instance of ApplePay Payment object.
         /// - Parameter merchantIdentifier: The merchant identifier.
         /// - Parameter requiredBillingContactFields:
         /// A list of fields that you need for a billing contact in order to process the transaction. Ignored on iOS 10.*.
@@ -57,7 +57,7 @@ extension ApplePayComponent {
                     requiredShippingContactFields: Set<PKContactField> = [],
                     billingContact: PKContact? = nil,
                     allowOnboarding: Bool = false) {
-            self.payment = payment
+            self.applePayPayment = payment
             self.merchantIdentifier = merchantIdentifier
             self.requiredBillingContactFields = requiredBillingContactFields
             self.requiredShippingContactFields = requiredShippingContactFields
@@ -67,12 +67,12 @@ extension ApplePayComponent {
 
         internal func createPaymentRequest(supportedNetworks: [PKPaymentNetwork]) -> PKPaymentRequest {
             let paymentRequest = PKPaymentRequest()
-            paymentRequest.countryCode = payment.countryCode
+            paymentRequest.countryCode = applePayPayment.countryCode
             paymentRequest.merchantIdentifier = merchantIdentifier
-            paymentRequest.currencyCode = payment.currencyCode
+            paymentRequest.currencyCode = applePayPayment.currencyCode
             paymentRequest.supportedNetworks = supportedNetworks
             paymentRequest.merchantCapabilities = .capability3DS
-            paymentRequest.paymentSummaryItems = payment.summaryItems
+            paymentRequest.paymentSummaryItems = applePayPayment.summaryItems
             paymentRequest.requiredBillingContactFields = requiredBillingContactFields
             paymentRequest.requiredShippingContactFields = requiredShippingContactFields
             paymentRequest.billingContact = billingContact

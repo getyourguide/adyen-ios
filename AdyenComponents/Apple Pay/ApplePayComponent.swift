@@ -12,7 +12,9 @@ import PassKit
 public class ApplePayComponent: NSObject, PresentableComponent, PaymentComponent, FinalizableComponent {
 
     internal var resultConfirmed: Bool = false
+
     internal var viewControllerDidFinish: Bool = false
+
     internal let applePayPaymentMethod: ApplePayPaymentMethod
 
     /// :nodoc:
@@ -21,7 +23,17 @@ public class ApplePayComponent: NSObject, PresentableComponent, PaymentComponent
     /// The Apple Pay payment method.
     public var paymentMethod: PaymentMethod { applePayPaymentMethod }
 
-    /// Apple Pay component configuration.
+    public var payment: Payment? {
+        get {
+            configuration.applePayPayment.payment
+        }
+
+        // swiftlint:disable:next unused_setter_value
+        set {
+            AdyenAssertion.assertionFailure(message: "Set `payment` is not supported on ApplePayComponent")
+        }
+    }
+
     internal let configuration: Configuration
 
     internal var paymentAuthorizationViewController: PKPaymentAuthorizationViewController?
@@ -34,20 +46,17 @@ public class ApplePayComponent: NSObject, PresentableComponent, PaymentComponent
     public weak var delegate: PaymentComponentDelegate?
     
     /// Initializes the component.
-    /// - Warning: didFinalize() must be called before dismissing this component.
+    /// - Warning: Do not dismiss this component.
+    ///  First, call `didFinalize(with:completion:)` on error or successm then dismiss it.
+    ///  Dismission should occur within `completion` block.
     ///
     /// - Parameter paymentMethod: The Apple Pay payment method. Must include country code.
     /// - Parameter apiContext: The API environment and credentials.
-    /// - Parameter payment: The describes the current payment.
     /// - Parameter configuration: Apple Pay component configuration
     /// - Throws: `ApplePayComponent.Error.userCannotMakePayment`.
     /// if user can't make payments on any of the payment request’s supported networks.
     /// - Throws: `ApplePayComponent.Error.deviceDoesNotSupportApplyPay` if the current device's hardware doesn't support ApplePay.
-    /// - Throws: `ApplePayComponent.Error.emptySummaryItems` if the summaryItems array is empty.
-    /// - Throws: `ApplePayComponent.Error.negativeGrandTotal` if the grand total is negative.
-    /// - Throws: `ApplePayComponent.Error.invalidSummaryItem` if at least one of the summary items has an invalid amount.
-    /// - Throws: `ApplePayComponent.Error.invalidCountryCode` if the `payment.countryCode` is not a valid ISO country code.
-    /// - Throws: `ApplePayComponent.Error.invalidCurrencyCode` if the `Amount.currencyCode` is not a valid ISO currency code.
+    /// - Throws: `ApplePayComponent.Error.userCannotMakePayment` if user can't make payments on any of the supported networks.
     public init(paymentMethod: ApplePayPaymentMethod,
                 apiContext: APIContext,
                 configuration: Configuration) throws {
@@ -74,16 +83,11 @@ public class ApplePayComponent: NSObject, PresentableComponent, PaymentComponent
 
         viewController.delegate = self
     }
-    
-    // MARK: - Presentable Component Protocol
-    
-    /// :nodoc:
+
     public var viewController: UIViewController {
         createPaymentAuthorizationViewController()
     }
 
-    /// Finalizes ApplePay payment after being processed by payment provider.
-    /// - Parameter success: The status of the payment.
     public func didFinalize(with success: Bool, completion: (() -> Void)?) {
         self.resultConfirmed = true
         if paymentAuthorizationCompletion == nil {
