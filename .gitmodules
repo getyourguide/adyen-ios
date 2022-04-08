@@ -1,0 +1,3 @@
+[submodule "adyen-ios"]
+	path = adyen-ios
+	url = https://github.com/getyourguide/adyen-ios/
