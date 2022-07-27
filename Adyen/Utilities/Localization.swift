@@ -104,6 +104,8 @@ public enum PaymentStyle {
     case needsRedirectToThirdParty(String)
 
     case immediate
+
+    case custom(String)
 }
 
 /// Helper function to create a localized submit button title. Optionally, the button title can include the given amount.
@@ -134,5 +136,7 @@ private func localizedZeroPaymentAuthorisationButtonTitle(style: PaymentStyle,
         return localizedString(.preauthorizeWith, parameters, name)
     case .immediate:
         return localizedString(.confirmPreauthorization, parameters)
+    case let .custom(title):
+        return title
     }
 }
