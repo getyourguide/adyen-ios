@@ -75,6 +75,9 @@ extension CardComponent {
         /// When nil, all countries are provided.
         public var billingAddressCountryCodes: [String]?
 
+        /// Indicates mode of how to display the payment button item.
+        public var paymentStyle: PaymentStyle
+
         /// Configuration of Card component.
         /// - Parameters:
         ///   - showsHolderNameField: Indicates if the field for entering the holder name should be displayed in the form.
@@ -92,6 +95,8 @@ extension CardComponent {
         ///   - installmentConfiguration: Configuration for installments. Defaults to `nil`.
         ///   - billingAddressCountryCodes: List of ISO country codes that is supported for the billing address.
         ///   Defaults to `nil`, which equals to all countries.
+        ///   - paymentStyle: Indicates mode of how to display the payment button item.
+        ///   Defaults to .immediate.
         public init(showsHolderNameField: Bool = false,
                     showsStorePaymentMethodField: Bool = true,
                     showsSecurityCodeField: Bool = true,
@@ -101,7 +106,8 @@ extension CardComponent {
                     storedCardConfiguration: StoredCardConfiguration = StoredCardConfiguration(),
                     allowedCardTypes: [CardType]? = nil,
                     installmentConfiguration: InstallmentConfiguration? = nil,
-                    billingAddressCountryCodes: [String]? = nil) {
+                    billingAddressCountryCodes: [String]? = nil,
+                    paymentStyle: PaymentStyle = .immediate) {
             self.showsHolderNameField = showsHolderNameField
             self.showsSecurityCodeField = showsSecurityCodeField
             self.showsStorePaymentMethodField = showsStorePaymentMethodField
@@ -112,6 +118,7 @@ extension CardComponent {
             self.socialSecurityNumberMode = socialSecurityNumberMode
             self.installmentConfiguration = installmentConfiguration
             self.billingAddressCountryCodes = billingAddressCountryCodes
+            self.paymentStyle = paymentStyle
         }
 
         internal func bcmcConfiguration() -> Configuration {

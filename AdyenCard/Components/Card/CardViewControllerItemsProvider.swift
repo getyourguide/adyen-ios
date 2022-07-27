@@ -15,8 +15,6 @@ extension CardViewController {
 
         private let payment: Payment?
 
-        private let paymentStyle: PaymentStyle
-
         private var localizationParameters: LocalizationParameters?
 
         private let configuration: CardComponent.Configuration
@@ -31,7 +29,6 @@ extension CardViewController {
 
         internal init(formStyle: FormComponentStyle,
                       payment: Payment?,
-                      paymentStyle: PaymentStyle = .immediate,
                       configuration: CardComponent.Configuration,
                       shopperInformation: PrefilledShopperInformation?,
                       cardLogos: [FormCardLogosItem.CardTypeLogo],
@@ -40,7 +37,6 @@ extension CardViewController {
                       localizationParameters: LocalizationParameters?) {
             self.formStyle = formStyle
             self.payment = payment
-            self.paymentStyle = paymentStyle
             self.configuration = configuration
             self.shopperInformation = shopperInformation
             self.cardLogos = cardLogos
@@ -192,7 +188,7 @@ extension CardViewController {
             let item = FormButtonItem(style: formStyle.mainButtonItem)
             item.identifier = ViewIdentifierBuilder.build(scopeInstance: scope, postfix: "payButtonItem")
             item.title = localizedSubmitButtonTitle(with: payment?.amount,
-                                                    style: paymentStyle,
+                                                    style: configuration.paymentStyle,
                                                     localizationParameters)
             return item
         }()
