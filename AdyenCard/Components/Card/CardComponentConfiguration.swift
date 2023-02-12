@@ -157,6 +157,9 @@ extension CardComponent {
         /// Billing address fields configurations.
         public var billingAddress: BillingAddressConfiguration
 
+        /// Indicates payment button item display mode.
+        public var paymentStyle: PaymentStyle
+
         /// Configuration of Card component.
         /// - Parameters:
         ///   - style: The component's UI style.
@@ -175,6 +178,8 @@ extension CardComponent {
         ///   - allowedCardTypes: The enforced list of allowed card types.
         ///   - installmentConfiguration: Configuration for installments. Defaults to `nil`.
         ///   - billingAddress: Billing address fields configurations.
+        ///   - paymentStyle: Indicates payment button item display mode.
+        ///   Defaults to `.immediate`.
         public init(style: FormComponentStyle = FormComponentStyle(),
                     shopperInformation: PrefilledShopperInformation? = nil,
                     localizationParameters: LocalizationParameters? = nil,
@@ -186,7 +191,8 @@ extension CardComponent {
                     storedCardConfiguration: StoredCardConfiguration = StoredCardConfiguration(),
                     allowedCardTypes: [CardType]? = nil,
                     installmentConfiguration: InstallmentConfiguration? = nil,
-                    billingAddress: BillingAddressConfiguration = .init()) {
+                    billingAddress: BillingAddressConfiguration = .init(),
+                    paymentStyle: PaymentStyle = .immediate) {
             self.style = style
             self.shopperInformation = shopperInformation
             self.localizationParameters = localizationParameters
@@ -199,6 +205,7 @@ extension CardComponent {
             self.socialSecurityNumberMode = socialSecurityNumberMode
             self.installmentConfiguration = installmentConfiguration
             self.billingAddress = billingAddress
+            self.paymentStyle = paymentStyle
         }
 
         internal func bcmcConfiguration() -> Configuration {
