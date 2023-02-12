@@ -114,11 +114,12 @@ private func attempt(_ input: LocalizationInput) -> String? {
     return nil
 }
 
-@_spi(AdyenInternal)
 public enum PaymentStyle {
     case needsRedirectToThirdParty(String)
 
     case immediate
+
+    case custom(String)
 }
 
 /// Helper function to create a localized submit button title. Optionally, the button title can include the given amount.
@@ -131,17 +132,26 @@ public enum PaymentStyle {
 public func localizedSubmitButtonTitle(with amount: Amount?,
                                        style: PaymentStyle,
                                        _ parameters: LocalizationParameters?) -> String {
-    guard let amount else {
-        return localizedString(.submitButton, parameters)
+    if let amount = amount, amount.value == 0 {
+        return localizedZeroPaymentAuthorisationButtonTitle(style: style,
+                                                            parameters)
     }
 
-    if amount.value == 0 {
-        return localizedZeroPaymentAuthorisationButtonTitle(style: style, parameters)
-    }
+    switch style {
+    case let .needsRedirectToThirdParty(name):
+        return localizedString(.preauthorizeWith, parameters, name)
+    case .immediate:
+        var tempAmount = amount
+        tempAmount.localeIdentifier = amount.localeIdentifier ?? parameters?.locale
 
-    var tempAmount = amount
-    tempAmount.localeIdentifier = amount.localeIdentifier ?? parameters?.locale
-    return localizedString(.submitButtonFormatted, parameters, tempAmount.formatted)
+        guard let formattedAmount = tempAmount?.formatted else {
+            return localizedString(.submitButton, parameters)
+        }
+
+        return localizedString(.submitButtonFormatted, parameters, formattedAmount)
+    case let .custom(title):
+        return title
+    }
 }
 
 private func localizedZeroPaymentAuthorisationButtonTitle(style: PaymentStyle,
@@ -151,5 +161,7 @@ private func localizedZeroPaymentAuthorisationButtonTitle(style: PaymentStyle,
         return localizedString(.preauthorizeWith, parameters, name)
     case .immediate:
         return localizedString(.confirmPreauthorization, parameters)
+    case let .custom(title):
+        return title
     }
 }

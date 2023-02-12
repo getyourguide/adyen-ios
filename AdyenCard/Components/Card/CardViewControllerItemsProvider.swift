@@ -176,7 +176,7 @@ extension CardViewController {
             let item = FormButtonItem(style: formStyle.mainButtonItem)
             item.identifier = ViewIdentifierBuilder.build(scopeInstance: scope, postfix: "payButtonItem")
             item.title = localizedSubmitButtonTitle(with: amount,
-                                                    style: .immediate,
+                                                    style: configuration.paymentStyle,
                                                     localizationParameters)
             return item
         }()
