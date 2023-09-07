@@ -52,7 +52,7 @@ open class BaseFormPickerItem<ElementType: CustomStringConvertible>: FormValueIt
     /// The complete list of selectable values, as observable.
     /// Updating this notifies the observing view `BaseFormPickerItemView`
     /// and reloads the picker view.
-    @Observable([]) public var selectableValues: [BasePickerElement<ElementType>]
+    @Adyen.Observable([]) public var selectableValues: [BasePickerElement<ElementType>]
 
     /// Initializes the picker item.
     ///

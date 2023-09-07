@@ -13,10 +13,10 @@ internal final class FormCardSecurityCodeItem: FormTextItem {
     internal var localizationParameters: LocalizationParameters?
     
     /// :nodoc:
-    @Observable(nil) internal var selectedCard: CardType?
+    @Adyen.Observable(nil) internal var selectedCard: CardType?
 
     /// :nodoc:
-    @Observable(false) internal var isOptional: Bool {
+    @Adyen.Observable(false) internal var isOptional: Bool {
         didSet {
             updateFormState()
         }
