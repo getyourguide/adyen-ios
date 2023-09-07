@@ -11,7 +11,7 @@ import Foundation
 public final class FormErrorItem: FormItem, Hidable {
 
     /// Indicates the error message.
-    @Observable(nil) public var message: String?
+    @Adyen.Observable(nil) public var message: String?
 
     /// The error icon name.
     public let iconName: String

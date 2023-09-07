@@ -14,7 +14,7 @@ public final class FormTextInputItem: FormTextItem, Hidable {
     public var isHidden: Observable<Bool> = Observable(false)
 
     /// :nodoc:
-    @Observable(true) public var isEnabled: Bool
+    @Adyen.Observable(true) public var isEnabled: Bool
     
     /// :nodoc:
     override public func build(with builder: FormItemViewBuilder) -> AnyFormItemView {

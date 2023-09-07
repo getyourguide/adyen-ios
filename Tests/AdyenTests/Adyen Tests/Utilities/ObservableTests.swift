@@ -153,8 +153,8 @@ class ObservableTests: XCTestCase, Observer {
         var stringValue: String = ""
         var optionalStringValue: String?
 
-        @Observable("") var observableString: String
-        @Observable(OtherObject()) var observableObject: OtherObject
+        @Adyen.Observable("") var observableString: String
+        @Adyen.Observable(OtherObject()) var observableObject: OtherObject
 
     }
 

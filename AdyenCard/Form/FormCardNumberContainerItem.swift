@@ -76,7 +76,7 @@ internal final class FormCardLogosItem: FormItem, Hidable {
     internal let style: FormTextItemStyle
     
     /// Observable property to update the owner view's alpha.
-    @Observable(1) internal var alpha: CGFloat
+    @Adyen.Observable(1) internal var alpha: CGFloat
     
     internal init(cardLogos: [CardTypeLogo], style: FormTextItemStyle) {
         self.cardLogos = cardLogos
