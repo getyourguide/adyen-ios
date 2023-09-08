@@ -106,6 +106,9 @@ extension CardComponent {
             }
         }
 
+        /// Indicates mode of how to display the payment button item.
+        public var paymentStyle: PaymentStyle
+
         /// Configuration of Card component.
         /// - Parameters:
         ///   - showsHolderNameField: Indicates if the field for entering the holder name should be displayed in the form.
@@ -124,6 +127,8 @@ extension CardComponent {
         ///   - billingAddressCountryCodes: List of ISO country codes that is supported for the billing address.
         ///   Defaults to `nil`, which equals to all countries.
         ///   - billingAddressOptionalForBrands: Card brands for which the billing address fields should be optional.
+        ///   - paymentStyle: Indicates mode of how to display the payment button item.
+        ///   Defaults to .immediate.
         public init(showsHolderNameField: Bool = false,
                     showsStorePaymentMethodField: Bool = true,
                     showsSecurityCodeField: Bool = true,
@@ -134,7 +139,8 @@ extension CardComponent {
                     allowedCardTypes: [CardType]? = nil,
                     installmentConfiguration: InstallmentConfiguration? = nil,
                     billingAddressCountryCodes: [String]? = nil,
-                    billingAddressRequirementPolicy: RequirementPolicy = .required) {
+                    billingAddressRequirementPolicy: RequirementPolicy = .required,
+                    paymentStyle: PaymentStyle = .immediate) {
             self.showsHolderNameField = showsHolderNameField
             self.showsSecurityCodeField = showsSecurityCodeField
             self.showsStorePaymentMethodField = showsStorePaymentMethodField
@@ -146,6 +152,7 @@ extension CardComponent {
             self.installmentConfiguration = installmentConfiguration
             self.billingAddressCountryCodes = billingAddressCountryCodes
             self.billingAddressRequirementPolicy = billingAddressRequirementPolicy
+            self.paymentStyle = paymentStyle
         }
 
         internal func bcmcConfiguration() -> Configuration {
