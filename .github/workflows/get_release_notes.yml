@@ -2,7 +2,7 @@ name: Get Release notes
 on: [workflow_dispatch]
 jobs:
   release_notes:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, small]
     steps:
       - name: Fetch repo
         uses: actions/checkout@v3
