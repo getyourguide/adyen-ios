@@ -24,8 +24,6 @@ internal final class FormCardNumberItem: FormTextItem, Observer {
     /// The value contains up to 6 first digits of card' PAN.
     @AdyenObservable("") internal var binValue: String
     
-    /// Currently selected brand for the entered bin.
-    @Adyen.Observable(nil) internal private(set) var currentBrand: CardBrand?
     /// nitial brand set after detection before any user interaction
     @AdyenObservable(nil) internal private(set) var initialBrand: CardBrand?
     

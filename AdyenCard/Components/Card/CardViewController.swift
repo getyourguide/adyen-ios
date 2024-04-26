@@ -328,17 +328,19 @@ extension FormValueItem where ValueType == String {
 }
 
 extension CardViewController: CardViewControllerProtocol {
-    func update(storePaymentMethodFieldVisibility isVisible: Bool) {
-        if !isVisible {
-            items.storeDetailsItem.value = false
-        }
-        items.storeDetailsItem.isVisible = isVisible
+  func update(storePaymentMethodFieldVisibility isVisible: Bool) {
+    if !isVisible {
+      items.storeDetailsItem.value = false
     }
+    items.storeDetailsItem.isVisible = isVisible
+  }
+  
+  func update(storePaymentMethodFieldValue isOn: Bool) {
+    items.storeDetailsItem.value = items.storeDetailsItem.isVisible && isOn
+  }
+}
 
-    func update(storePaymentMethodFieldValue isOn: Bool) {
-        items.storeDetailsItem.value = items.storeDetailsItem.isVisible && isOn
 extension CardBrand {
-
     internal var securityCodeItemDisplayMode: FormCardSecurityCodeItem.DisplayMode {
         switch self.cvcPolicy {
         case .hidden: return .hidden
