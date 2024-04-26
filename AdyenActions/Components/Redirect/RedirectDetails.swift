@@ -10,6 +10,7 @@ import Foundation
 /// Contains the details supplied by the redirect component.
 public struct RedirectDetails: AdditionalDetails, Decodable {
     
+    /// Indicates an error with the `RedirectDetails` initiallization.
     public enum Error: LocalizedError {
         
         /// Indicates that the provided url to initialize a new instance of `RedirectDetails` is invalid.
@@ -20,15 +21,20 @@ public struct RedirectDetails: AdditionalDetails, Decodable {
         }
     }
     
-    internal var payload: String?
+    /// Redirect `payload` if available.
+    public private(set) var payload: String?
     
-    internal var redirectResult: String?
+    /// Redirect result if available.
+    public private(set) var redirectResult: String?
     
-    internal var paymentResponse: String?
+    /// Redirect `PaRes` if available.
+    public private(set) var paymentResponse: String?
     
-    internal var merchantData: String?
+    /// Redirect `MD` or merchant data if available.
+    public private(set) var merchantData: String?
     
-    internal var queryString: String?
+    /// Redirect raw query parameters in case they're unrecognizable.
+    public private(set) var queryString: String?
     
     /// Initializes the redirect payment details.
     ///
