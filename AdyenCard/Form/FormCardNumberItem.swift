@@ -22,21 +22,21 @@ internal final class FormCardNumberItem: FormTextItem, Observer {
     
     /// The observable of the card's BIN value.
     /// The value contains up to 6 first digits of card' PAN.
-    @Adyen.Observable("") internal var binValue: String
+    @AdyenObservable("") internal var binValue: String
     
     /// Currently selected brand for the entered bin.
     @Adyen.Observable(nil) internal private(set) var currentBrand: CardBrand?
     /// nitial brand set after detection before any user interaction
-    @Adyen.Observable(nil) internal private(set) var initialBrand: CardBrand?
+    @AdyenObservable(nil) internal private(set) var initialBrand: CardBrand?
     
     /// Brand selected in dual branded cards, set after user selection.
-    @Adyen.Observable(nil) internal private(set) var selectedDualBrand: CardBrand?
+    @AdyenObservable(nil) internal private(set) var selectedDualBrand: CardBrand?
     
     /// Detected brand logo(s) for the entered bin.
-    @Adyen.Observable([]) internal private(set) var detectedBrandLogos: [FormCardLogosItem.CardTypeLogo]
+    @AdyenObservable([]) internal private(set) var detectedBrandLogos: [FormCardLogosItem.CardTypeLogo]
     
     /// Determines whether the item is currently the focused one (first responder).
-    @Adyen.Observable(false) internal var isActive
+    @AdyenObservable(false) internal var isActive
     
     /// Current detected brands, mainly used for dual-branded cards.
     internal private(set) var detectedBrands: [CardBrand] = []

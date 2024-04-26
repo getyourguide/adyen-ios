@@ -7,7 +7,7 @@ let package = Package(
     name: "Adyen",
     defaultLocalization: "en-us",
     platforms: [
-        .iOS(.v11)
+        .iOS(.v12)
     ],
     products: [
         .library(
@@ -47,7 +47,7 @@ let package = Package(
         .package(
             name: "Adyen3DS2",
             url: "https://github.com/Adyen/adyen-3ds2-ios",
-            .exact(Version(2, 3, 2))
+            .exact(Version(2, 3, 3))
         ),
         .package(
             name: "AdyenNetworking",
