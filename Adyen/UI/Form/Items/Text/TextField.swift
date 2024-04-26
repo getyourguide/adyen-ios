@@ -61,8 +61,9 @@ public final class TextField: UITextField {
 
 extension TextField {
 
+    /// :nodoc:
     public func apply(placeholderText: String?, with style: TextStyle?) {
-        if let text = placeholderText, let style = style {
+        if let text = placeholderText, let style {
             attributedPlaceholder = NSAttributedString(string: text, attributes: style.stringAttributes)
         } else {
             placeholder = placeholderText

@@ -119,6 +119,7 @@ extension ApplePayComponent {
             return paymentRequest
         }
 
+        /// :nodoc:
         public mutating func update(amount: Amount, localeIdentifier: String?) {
             var newItems = summaryItems
             guard let lastItem = newItems.last else { return }
@@ -132,56 +133,19 @@ extension ApplePayComponent {
         }
     }
 
-    // Adyen supports: interac, visa, mc, electron, maestro, amex, jcb, discover, elodebit, elo.
-    // Will support girocard in future versions
-    internal static var defaultNetworks: [PKPaymentNetwork] {
-        var networks: [PKPaymentNetwork] = [
-            .visa,
-            .masterCard,
-            .amex,
-            .discover,
-            .interac,
-            .JCB,
-            .suica,
-            .quicPay,
-            .idCredit,
-            .chinaUnionPay
-        ]
-
-        if #available(iOS 11.2, *) {
-            networks.append(.cartesBancaires)
-        }
-
-        if #available(iOS 12.1.1, *) {
-            networks.append(.elo)
-            networks.append(.mada)
-        }
-
-        if #available(iOS 12.0, *) {
-            networks.append(.maestro)
-            networks.append(.electron)
-            networks.append(.vPay)
-            networks.append(.eftpos)
-        }
-
-        if #available(iOS 14.0, *) {
-            networks.append(.girocard)
-        }
-
-        if #available(iOS 14.5, *) {
-            networks.append(.mir)
-        }
-
-        return networks
-    }
-
 }
 
 extension ApplePayPaymentMethod {
 
+    internal static var systemSupportedNetworks: [PKPaymentNetwork] {
+        let request = PKPaymentRequest()
+        request.supportedNetworks = PKPaymentRequest.availableNetworks()
+        return request.supportedNetworks
+    }
+
     internal var supportedNetworks: [PKPaymentNetwork] {
-        var networks = ApplePayComponent.defaultNetworks
-        if let brands = brands {
+        var networks = ApplePayPaymentMethod.systemSupportedNetworks
+        if let brands {
             let brandsSet = Set(brands)
             networks = networks.filter { brandsSet.contains($0.adyenName) }
         }

@@ -23,7 +23,7 @@ import UIKit
  - SeeAlso:
  [Implementation Reference](https://docs.adyen.com/online-payments/ios/drop-in)
  */
-public final class DropInComponent: NSObject, PresentableComponent {
+public final class DropInComponent: NSObject, PresentableComponent, LoadingComponent {
 
     private var configuration: Configuration
 
@@ -87,7 +87,6 @@ public final class DropInComponent: NSObject, PresentableComponent {
     ///
     /// - Parameter action: The action to handle.
     public func handle(_ action: Action) {
-        rootComponent.stopLoadingIfNeeded()
         actionComponent.handle(action)
     }
 
@@ -256,7 +255,8 @@ public final class DropInComponent: NSObject, PresentableComponent {
         paymentInProgress = false
     }
 
-    internal func stopLoading() {
+    public func stopLoading() {
+        paymentInProgress = false
         (rootComponent as? ComponentLoader)?.stopLoading()
         selectedPaymentComponent?.stopLoadingIfNeeded()
     }

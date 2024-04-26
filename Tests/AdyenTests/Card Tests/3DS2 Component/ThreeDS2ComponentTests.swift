@@ -30,7 +30,7 @@ class ThreeDS2ComponentTests: XCTestCase {
 
         let redirectComponent = AnyRedirectComponentMock()
         redirectComponent.onHandle = { [weak redirectComponent] action in
-            guard let redirectComponent = redirectComponent else { return }
+            guard let redirectComponent else { return }
 
             XCTAssertEqual(action, mockedAction)
 
@@ -68,7 +68,7 @@ class ThreeDS2ComponentTests: XCTestCase {
 
         let redirectComponent = AnyRedirectComponentMock()
         redirectComponent.onHandle = { [weak redirectComponent] action in
-            guard let redirectComponent = redirectComponent else { return }
+            guard let redirectComponent else { return }
 
             XCTAssertEqual(action, mockedAction)
 
@@ -167,8 +167,12 @@ class ThreeDS2ComponentTests: XCTestCase {
         delegate.onDidFail = { error, component in
             XCTAssertTrue(component === sut)
 
-            let error = error as! ThreeDS2Component.Error
-            XCTAssertEqual(error, .unexpectedAction)
+            switch error as? ThreeDS2Component.Error {
+            case .unexpectedAction:
+                break
+            default:
+                XCTFail()
+            }
             delegateExpectation.fulfill()
         }
         sut.delegate = delegate

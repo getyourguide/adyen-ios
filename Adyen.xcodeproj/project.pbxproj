@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		00CBC28F292CF91200B89CC9 /* AddressValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CBC28E292CF91200B89CC9 /* AddressValidator.swift */; };
 		5A1315C926296B100092366D /* ProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1315C826296B100092366D /* ProgressViewStyle.swift */; };
 		5A15D589264BB0BD00A8E3C7 /* BoletoComponentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A15D588264BB0BD00A8E3C7 /* BoletoComponentExtensions.swift */; };
 		5A15D5A1264BE1E500A8E3C7 /* PrefilledShopperInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A15D5A0264BE1E500A8E3C7 /* PrefilledShopperInformation.swift */; };
@@ -65,6 +66,7 @@
 		5AD755DB268E11DA0040B919 /* VoucherComponentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD755DA268E11DA0040B919 /* VoucherComponentExtensions.swift */; };
 		5AF730EA2667C3F10091C573 /* APIContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF730E92667C3F10091C573 /* APIContextTests.swift */; };
 		5AF8CD4D26691D3A00102339 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8CD4C26691D3A00102339 /* Dummy.swift */; };
+		8140A3782A332DCA00896403 /* AdyenSdkVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8140A3772A332DCA00896403 /* AdyenSdkVersion.swift */; };
 		A009837D279859DC007E68C4 /* ACHDirectDebitComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A009837C279859DC007E68C4 /* ACHDirectDebitComponentTests.swift */; };
 		A009837F27986B50007E68C4 /* BankDetailsEncryptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A009837E27986B50007E68C4 /* BankDetailsEncryptorTests.swift */; };
 		A0113D9B2763887800AD395C /* ActionNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0113D9A2763887800AD395C /* ActionNavigationBar.swift */; };
@@ -274,6 +276,7 @@
 		E774A24F25DD72D700503C40 /* LogoGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A23B25DD72D300503C40 /* LogoGeneratorTests.swift */; };
 		E7763A1125F02BD20046371E /* GiftCardPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7763A1025F02BD20046371E /* GiftCardPaymentMethod.swift */; };
 		E7768BDC26B416C3000851B3 /* DateValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7768BDB26B416C3000851B3 /* DateValidationTests.swift */; };
+		E7781850295DA392000E8E01 /* NavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E778184F295DA392000E8E01 /* NavigationDelegate.swift */; };
 		E7798569268CE1B900CECA95 /* KCPDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76A4D392684F39A001BEAC3 /* KCPDetails.swift */; };
 		E7806EBD26147AB700101DBB /* ViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7806EBC26147AB700101DBB /* ViewControllerDelegate.swift */; };
 		E787C9AC24696A8900B401E0 /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E787C9AB24696A8900B401E0 /* CornerRadiusStyle.swift */; };
@@ -962,6 +965,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00CBC28E292CF91200B89CC9 /* AddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressValidator.swift; sourceTree = "<group>"; };
 		5A1315C826296B100092366D /* ProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewStyle.swift; sourceTree = "<group>"; };
 		5A15D588264BB0BD00A8E3C7 /* BoletoComponentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoletoComponentExtensions.swift; sourceTree = "<group>"; };
 		5A15D5A0264BE1E500A8E3C7 /* PrefilledShopperInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefilledShopperInformation.swift; sourceTree = "<group>"; };
@@ -1003,6 +1007,7 @@
 		5AD755DA268E11DA0040B919 /* VoucherComponentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherComponentExtensions.swift; sourceTree = "<group>"; };
 		5AF730E92667C3F10091C573 /* APIContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIContextTests.swift; sourceTree = "<group>"; };
 		5AF8CD4C26691D3A00102339 /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		8140A3772A332DCA00896403 /* AdyenSdkVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenSdkVersion.swift; sourceTree = "<group>"; };
 		A009837C279859DC007E68C4 /* ACHDirectDebitComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHDirectDebitComponentTests.swift; sourceTree = "<group>"; };
 		A009837E27986B50007E68C4 /* BankDetailsEncryptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailsEncryptorTests.swift; sourceTree = "<group>"; };
 		A0113D9A2763887800AD395C /* ActionNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionNavigationBar.swift; sourceTree = "<group>"; };
@@ -1240,6 +1245,7 @@
 		E774A23B25DD72D300503C40 /* LogoGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoGeneratorTests.swift; sourceTree = "<group>"; };
 		E7763A1025F02BD20046371E /* GiftCardPaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardPaymentMethod.swift; sourceTree = "<group>"; };
 		E7768BDB26B416C3000851B3 /* DateValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValidationTests.swift; sourceTree = "<group>"; };
+		E778184F295DA392000E8E01 /* NavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDelegate.swift; sourceTree = "<group>"; };
 		E7806EBC26147AB700101DBB /* ViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E787C9AB24696A8900B401E0 /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
 		E787C9AD24698C2E00B401E0 /* UIViewRoundingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRoundingHelpers.swift; sourceTree = "<group>"; };
@@ -2513,6 +2519,7 @@
 				5AD40EFA26303D490090E01C /* UILabelHelpers.swift */,
 				A0D48FB727109B0200C0B82C /* ArrayHelpers.swift */,
 				E7E0E2372762005B001DF0C9 /* NSConstraintHelper.swift */,
+				8140A3772A332DCA00896403 /* AdyenSdkVersion.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2681,6 +2688,7 @@
 				E90139CA22846AD5004C74DA /* ModalViewController.swift */,
 				E7484C2623B9FDF000CCF74F /* SlideInPresentationAnimator.swift */,
 				E7388D8423DB1F9A008E62B8 /* DimmingPresentationController.swift */,
+				E778184F295DA392000E8E01 /* NavigationDelegate.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -3025,6 +3033,7 @@
 				E9E3DACC221EEAB200697074 /* CardSecurityCodeValidator.swift */,
 				E9E3DAD0221EEE2100697074 /* CardExpiryDateValidator.swift */,
 				F9D5751123756BD0009C18B5 /* CardPublicKeyValidator.swift */,
+				00CBC28E292CF91200B89CC9 /* AddressValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -4574,6 +4583,7 @@
 		};
 		E7388FC1260B68C400291DE7 /* Format and lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4592,6 +4602,7 @@
 		};
 		E7388FC2260B68DE00291DE7 /* Format and lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4610,6 +4621,7 @@
 		};
 		F91664F123E42D2D00C10738 /* AdyenUIHost configuration */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4628,6 +4640,7 @@
 		};
 		F9175E662593942E00D653BE /* Format and lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4646,6 +4659,7 @@
 		};
 		F9175F9F259498EA00D653BE /* Format and lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4664,6 +4678,7 @@
 		};
 		F95B6DD2252B1F6A002C9062 /* Format and lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4700,6 +4715,7 @@
 		};
 		F9620DA223C747BD005209FC /* Format and lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4718,6 +4734,7 @@
 		};
 		F9A4A3012373235800D774E8 /* Format and lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4736,6 +4753,7 @@
 		};
 		F9A4A302237323DE00D774E8 /* Format and lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4754,6 +4772,7 @@
 		};
 		F9A4A303237323E700D774E8 /* Format and lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4772,6 +4791,7 @@
 		};
 		F9A4A304237323EE00D774E8 /* Format and lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -4988,6 +5008,7 @@
 				E9093401228C54CD00C9F04B /* LogoURLProvider.swift in Sources */,
 				F99E7278261F6C6F00EA5B78 /* KeyboardObserver.swift in Sources */,
 				E21895E622A7CC56001B6EE0 /* FormSplitItemView.swift in Sources */,
+				8140A3782A332DCA00896403 /* AdyenSdkVersion.swift in Sources */,
 				E9021DF8225E2240009CF7F4 /* ListSection.swift in Sources */,
 				E787C9AC24696A8900B401E0 /* CornerRadiusStyle.swift in Sources */,
 				F9D5752A237C6084009C18B5 /* StoredBCMCPaymentMethod.swift in Sources */,
@@ -5216,6 +5237,7 @@
 				A09C704327032870004C01AA /* FormCardLogosItemView.swift in Sources */,
 				A0F41E5626CBCA6E0089AD6C /* InstallmentOptions.swift in Sources */,
 				F9B8C49223FC287100C4D0FB /* FormCardNumberItemView.swift in Sources */,
+				00CBC28F292CF91200B89CC9 /* AddressValidator.swift in Sources */,
 				F9FE25A72625B448001874BB /* GiftCardComponent.swift in Sources */,
 				F92329D225AD0240002C5BC4 /* CardBrand.swift in Sources */,
 				F9C6BD6026DFBA0600DA7512 /* ThreeDS2SdkVersion.swift in Sources */,
@@ -5271,6 +5293,7 @@
 				E767F49B25A5E9740077029E /* ModalToolbar.swift in Sources */,
 				E9021DFC2260D626009CF7F4 /* ComponentSections.swift in Sources */,
 				E7484C2723B9FDF000CCF74F /* SlideInPresentationAnimator.swift in Sources */,
+				E7781850295DA392000E8E01 /* NavigationDelegate.swift in Sources */,
 				5A238C93263AEA0800758FEF /* PreApplePayView.swift in Sources */,
 				E9B36CC722451C8300EAA368 /* DropInConfiguration.swift in Sources */,
 				E7620EA123BF3DC800A492C3 /* ModalViewController.swift in Sources */,
@@ -5707,6 +5730,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				MARKETING_VERSION = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 6;
 			};
@@ -5716,6 +5740,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				MARKETING_VERSION = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 6;
 			};
@@ -5756,7 +5781,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -5776,12 +5801,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -5822,7 +5847,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5836,11 +5861,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -5853,11 +5878,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Adyen/Info.plist;
@@ -5867,7 +5892,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.Adyen;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -5885,11 +5910,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Adyen/Info.plist;
@@ -5899,7 +5924,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.Adyen;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -5923,6 +5948,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AdyenUIHost.app/AdyenUIHost";
@@ -5942,6 +5968,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AdyenUIHost.app/AdyenUIHost";
@@ -5951,11 +5978,11 @@
 		E2C0E065220982AE008616F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenCard/Info.plist;
@@ -5965,7 +5992,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenCard;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -5978,11 +6005,11 @@
 		E2C0E066220982AE008616F6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenCard/Info.plist;
@@ -5992,7 +6019,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenCard;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -6010,7 +6037,7 @@
 				CODE_SIGN_ENTITLEMENTS = Demo/Shared.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Demo/UIKit/Info.plist;
@@ -6019,7 +6046,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=100";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.CheckoutDemoUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6036,7 +6063,7 @@
 				CODE_SIGN_ENTITLEMENTS = Demo/Shared.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Demo/UIKit/Info.plist;
@@ -6045,7 +6072,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=100";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.CheckoutDemoUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6059,11 +6086,11 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenDropIn/Info.plist;
@@ -6073,7 +6100,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenDropIn;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -6088,11 +6115,11 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenDropIn/Info.plist;
@@ -6102,7 +6129,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenDropIn;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -6116,11 +6143,11 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenComponents/Info.plist;
@@ -6131,14 +6158,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenComponents;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -6148,11 +6175,11 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenComponents/Info.plist;
@@ -6163,14 +6190,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenComponents;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -6180,11 +6207,11 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenActions/Info.plist;
@@ -6195,14 +6222,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenActions;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -6212,11 +6239,11 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenActions/Info.plist;
@@ -6227,14 +6254,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenActions;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -6244,11 +6271,11 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenEncryption/Info.plist;
@@ -6259,14 +6286,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenEncryption;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -6276,11 +6303,11 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenEncryption/Info.plist;
@@ -6291,14 +6318,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenEncryption;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -6308,11 +6335,11 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenSwiftUI/Info.plist;
@@ -6323,13 +6350,13 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -6339,11 +6366,11 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AdyenSwiftUI/Info.plist;
@@ -6354,13 +6381,13 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -6373,7 +6400,7 @@
 				CODE_SIGN_ENTITLEMENTS = Demo/Shared.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEVELOPMENT_ASSET_PATHS = "\"Demo/SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				ENABLE_PREVIEWS = YES;
@@ -6384,12 +6411,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.CheckoutDemoSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -6402,7 +6429,7 @@
 				CODE_SIGN_ENTITLEMENTS = Demo/Shared.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEVELOPMENT_ASSET_PATHS = "\"Demo/SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				ENABLE_PREVIEWS = YES;
@@ -6413,12 +6440,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.CheckoutDemoSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -6436,11 +6463,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = AdyenSwiftUIHost;
 			};
@@ -6459,11 +6487,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adyen.AdyenSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = AdyenSwiftUIHost;
 			};
@@ -6475,11 +6504,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "";
@@ -6492,7 +6521,7 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = (
@@ -6506,7 +6535,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -6518,11 +6547,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.10.0;
+				CURRENT_PROJECT_VERSION = 4.10.5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2NYSS5932;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 4.10.0;
+				DYLIB_CURRENT_VERSION = 4.10.5;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "";
@@ -6535,7 +6564,7 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = (
@@ -6548,7 +6577,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -6707,7 +6736,7 @@
 			repositoryURL = "https://github.com/Adyen/adyen-3ds2-ios";
 			requirement = {
 				kind = exactVersion;
-				version = 2.2.5;
+				version = 2.3.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
