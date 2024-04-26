@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2024 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -21,9 +21,16 @@ public final class CardSecurityCodeFormatter: NumericFormatter, Observer {
     
     /// Initiate new instance of CardSecurityCodeValidator
     /// - Parameter publisher: observer of a card type.
-    public init(publisher: Observable<CardType?>) {
+    public init(publisher: AdyenObservable<CardType?>) {
         super.init()
         bind(publisher, to: self, at: \.cardType)
+    }
+    
+    /// Initiate new instance of CardSecurityCodeValidator with a fixed ``CardType``
+    /// - Parameter cardType: The card type to format the security code for
+    public init(cardType: CardType) {
+        super.init()
+        self.cardType = cardType
     }
     
     /// :nodoc:

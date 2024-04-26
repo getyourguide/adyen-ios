@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -55,11 +55,11 @@ internal final class StoredCardComponent: PaymentComponent, PresentableComponent
         
         manager.localizationParameters = localizationParameters
         manager.completionHandler = { [weak self] result in
-            guard let self = self else { return }
+            guard let self else { return }
             
             switch result {
             case let .success(details):
-                self.submit(data: PaymentComponentData(paymentMethodDetails: details, amount: self.amountToPay, order: self.order))
+                self.submit(data: PaymentComponentData(paymentMethodDetails: details, amount: self.payment?.amount, order: self.order))
             case let .failure(error):
                 self.delegate?.didFail(with: error, from: self)
             }

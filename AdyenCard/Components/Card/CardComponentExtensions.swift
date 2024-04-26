@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -33,12 +33,12 @@ extension CardComponent {
                                       encryptedCard: encryptedCard,
                                       holderName: card.holder,
                                       selectedBrand: cardViewController.selectedBrand,
-                                      billingAddress: cardViewController.address,
+                                      billingAddress: cardViewController.validAddress,
                                       kcpDetails: kcpDetails,
                                       socialSecurityNumber: cardViewController.socialSecurityNumber)
             
             let data = PaymentComponentData(paymentMethodDetails: details,
-                                            amount: amountToPay,
+                                            amount: payment?.amount,
                                             order: order,
                                             storePaymentMethod: cardViewController.storePayment,
                                             installments: cardViewController.installments)
@@ -69,8 +69,8 @@ extension CardComponent: TrackableComponent {
 extension KCPDetails {
 
     fileprivate func encrypt(with publicKey: String) throws -> KCPDetails {
-        KCPDetails(taxNumber: taxNumber,
-                   password: try CardEncryptor.encrypt(password: password, with: publicKey))
+        try KCPDetails(taxNumber: taxNumber,
+                       password: CardEncryptor.encrypt(password: password, with: publicKey))
     }
 
 }

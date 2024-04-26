@@ -41,30 +41,6 @@ class ApplePayComponentTest: XCTestCase {
         UIApplication.shared.keyWindow!.rootViewController = emptyVC
     }
 
-    func testApplePayViewControllerIsDismissedFromInside() {
-        guard Available.iOS12 else { return }
-        let dummyExpectation = expectation(description: "Wait stop dismissing")
-
-        mockDelegate.onDidFail = { error, component in
-            XCTFail("should not call didFail")
-        }
-
-        let viewController = sut.viewController
-        UIApplication.shared.keyWindow!.rootViewController = emptyVC
-        UIApplication.shared.keyWindow!.rootViewController!.present(self.sut.viewController, animated: false)
-        
-        wait(for: .seconds(1))
-        
-        self.sut.dismiss {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                dummyExpectation.fulfill()
-            }
-        }
-
-        waitForExpectations(timeout: 10)
-        XCTAssertTrue(viewController !== self.sut.viewController)
-    }
-
     func testApplePayViewControllerShouldCallDelegateDidFail() {
         guard Available.iOS12 else { return }
         let viewController = sut!.viewController
@@ -84,6 +60,12 @@ class ApplePayComponentTest: XCTestCase {
         waitForExpectations(timeout: 10)
 
         XCTAssertTrue(viewController !== self.sut.viewController)
+    }
+
+    func testPaymentMatches() {
+        XCTAssertEqual(sut.payment?.countryCode, payment.countryCode)
+        XCTAssertEqual(sut.payment?.amount.currencyCode, payment.amount.currencyCode)
+        XCTAssertEqual(sut.payment?.amount.value, payment.amount.value)
     }
 
     func testInvalidCurrencyCode() {
@@ -196,10 +178,53 @@ class ApplePayComponentTest: XCTestCase {
         let supportedNetworks = paymentMethod.supportedNetworks
 
         if #available(iOS 12.1.1, *) {
-            XCTAssertEqual(supportedNetworks, [.masterCard, .elo])
+            XCTAssertEqualCollection(supportedNetworks, [.masterCard, .elo])
         } else {
             XCTAssertEqual(supportedNetworks, [.masterCard])
         }
+    }
+
+    func testFinalise() {
+        let onFinaliseExpectation = expectation(description: "Wait for component to finalise")
+        
+        sut.finalizeIfNeeded(with: true) {
+            onFinaliseExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 10)
+    }
+
+    func testFinalisePayment() {
+        let mockPayment: PKPayment = .init()
+        let onApplePayFinaliseExpectation = expectation(description: "Wait for component to finalise")
+        sut.paymentAuthorizationViewController(sut.viewController as! PKPaymentAuthorizationViewController,
+                                               didAuthorizePayment: mockPayment) { _ in
+            onApplePayFinaliseExpectation.fulfill()
+        }
+
+        let onFinaliseExpectation = expectation(description: "Wait for component to finalise")
+        sut.finalizeIfNeeded(with: true) {
+            onFinaliseExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 10)
+    }
+
+    func testFinaliseOnSuccesfullPayment() {
+        let onPaymentProccessedExpectation = expectation(description: "Wait for component to finalise")
+        sut.state = .paid { status in
+            XCTAssertTrue(status == .success)
+            onPaymentProccessedExpectation.fulfill()
+        }
+
+        let onFinaliseExpectation = expectation(description: "Wait for component to finalise")
+        sut.finalizeIfNeeded(with: true, completion: {
+            onFinaliseExpectation.fulfill()
+        })
+
+        sut.paymentAuthorizationViewControllerDidFinish(sut.paymentAuthorizationViewController!)
+
+        waitForExpectations(timeout: 10)
     }
     
     private func getRandomContactFieldSet() -> Set<PKContactField> {
@@ -238,43 +263,25 @@ class ApplePayComponentTest: XCTestCase {
     }
     
     private var supportedNetworks: [PKPaymentNetwork] {
-        var networks: [PKPaymentNetwork] = [
-            .visa,
-            .masterCard,
-            .amex,
-            .discover,
-            .interac,
-            .JCB,
-            .suica,
-            .quicPay,
-            .idCredit,
-            .chinaUnionPay
-        ]
-
-        if #available(iOS 11.2, *) {
-            networks.append(.cartesBancaires)
-        }
-
-        if #available(iOS 12.1.1, *) {
-            networks.append(.elo)
-            networks.append(.mada)
-        }
-
-        if #available(iOS 12.0, *) {
-            networks.append(.maestro)
-            networks.append(.electron)
-            networks.append(.vPay)
-            networks.append(.eftpos)
-        }
-
-        if #available(iOS 14.0, *) {
-            networks.append(.girocard)
-        }
-
-        if #available(iOS 14.5, *) {
-            networks.append(.mir)
-        }
-
-        return networks
+        ApplePayPaymentMethod.systemSupportedNetworks
     }
+}
+
+extension XCTestCase {
+
+    public func XCTAssertEqualCollection<T>(_ expression1: @autoclosure () throws -> [T],
+                                            _ expression2: @autoclosure () throws -> [T],
+                                            _ message: @autoclosure () -> String = "",
+                                            file: StaticString = #filePath,
+                                            line: UInt = #line) where T: Hashable {
+
+        let lhs = try! expression1()
+        let rhs = try! expression2()
+        if lhs.count != rhs.count { XCTFail("Length must match") }
+
+        let lhsSet = Set<T>(lhs)
+        let rhsSet = Set<T>(rhs)
+        XCTAssertTrue(lhsSet.intersection(rhsSet).count == lhs.count, message())
+    }
+
 }

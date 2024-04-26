@@ -20,13 +20,13 @@ public final class FormButtonItem: FormItem {
     public var identifier: String?
     
     /// The title of the button.
-    @Adyen.Observable(nil) public var title: String?
-
+    @AdyenObservable(nil) public var title: String?
+    
     /// The observable of the button indicator activity.
-    @Adyen.Observable(false) public var showsActivityIndicator: Bool
+    @AdyenObservable(false) public var showsActivityIndicator: Bool
     
     /// The observable of the button's availability status.
-    @Adyen.Observable(true) public var enabled: Bool
+    @AdyenObservable(true) public var enabled: Bool
     
     /// A closure that will be invoked when a button is selected.
     public var buttonSelectionHandler: (() -> Void)?

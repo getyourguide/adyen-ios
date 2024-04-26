@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -77,6 +77,12 @@ public struct FormItemViewBuilder {
     public func build(with item: FormAddressItem) -> FormItemView<FormAddressItem> {
         FormVerticalStackItemView(item: item)
     }
+    
+    /// Builds `FormTextItemView<FormPostalCodeItem>` from `FormPostalCodeItem`.
+    /// :nodoc:
+    public func build(with item: FormPostalCodeItem) -> FormItemView<FormPostalCodeItem> {
+        FormTextItemView(item: item)
+    }
 
     /// Builds `FormSpacerItemView` from `FormSpacerItem`.
     /// :nodoc:
@@ -84,6 +90,7 @@ public struct FormItemViewBuilder {
         FormSpacerItemView(item: item)
     }
 
+    /// :nodoc:
     public static func build(_ item: FormItem) -> AnyFormItemView {
         let itemView = item.build(with: FormItemViewBuilder())
         itemView.accessibilityIdentifier = item.identifier

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -66,11 +66,11 @@ public final class IssuerListComponent: PaymentComponent, PresentableComponent, 
                                                         paymentMethod: issuerListPaymentMethod,
                                                         environment: apiContext.environment)
             listItem.selectionHandler = { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 
                 let details = IssuerListDetails(paymentMethod: self.issuerListPaymentMethod,
                                                 issuer: issuer.identifier)
-                self.submit(data: PaymentComponentData(paymentMethodDetails: details, amount: self.amountToPay, order: self.order))
+                self.submit(data: PaymentComponentData(paymentMethodDetails: details, amount: self.payment?.amount, order: self.order))
                 listViewController.startLoading(for: listItem)
             }
             

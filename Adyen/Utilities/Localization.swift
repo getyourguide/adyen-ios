@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -81,7 +81,7 @@ private func buildPossibleInputs(for bundle: Bundle,
 }
 
 private func updated(_ key: String, withSeparator separator: String?) -> String? {
-    guard let separator = separator else { return nil }
+    guard let separator else { return nil }
     return key.replacingOccurrences(of: ".", with: separator)
 }
 
@@ -101,8 +101,9 @@ private func attempt(_ input: LocalizationInput) -> String? {
 
 /// :nodoc:
 public enum PaymentStyle {
+    /// :nodoc:
     case needsRedirectToThirdParty(String)
-
+    /// :nodoc:
     case immediate
 
     case custom(String)
@@ -118,7 +119,7 @@ public enum PaymentStyle {
 public func localizedSubmitButtonTitle(with amount: Amount?,
                                        style: PaymentStyle,
                                        _ parameters: LocalizationParameters?) -> String {
-    if let amount = amount, amount.value == 0 {
+    if let amount, amount.value == 0 {
         return localizedZeroPaymentAuthorisationButtonTitle(style: style,
                                                             parameters)
     }

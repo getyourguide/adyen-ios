@@ -72,19 +72,15 @@ extension CardViewController {
             return item
         }()
 
-        internal lazy var postalCodeItem: FormTextItem = {
-            let zipCodeItem = FormTextInputItem(style: formStyle.textField)
-            zipCodeItem.title = localizedString(.postalCodeFieldTitle, localizationParameters)
-            zipCodeItem.placeholder = localizedString(.postalCodeFieldPlaceholder, localizationParameters)
-            zipCodeItem.validator = LengthValidator(minimumLength: 2, maximumLength: 30)
-            zipCodeItem.validationFailureMessage = localizedString(.validationAlertTitle, localizationParameters)
+        internal lazy var postalCodeItem: FormPostalCodeItem = {
+            let zipCodeItem = FormPostalCodeItem(style: formStyle.textField, localizationParameters: localizationParameters)
             zipCodeItem.identifier = ViewIdentifierBuilder.build(scopeInstance: scope, postfix: "postalCodeItem")
-            zipCodeItem.contentType = .postalCode
             return zipCodeItem
         }()
 
         internal lazy var numberContainerItem: FormCardNumberContainerItem = {
             let item = FormCardNumberContainerItem(cardTypeLogos: cardLogos,
+                                                   showsSupportedCardLogos: configuration.showsSupportedCardLogos,
                                                    style: formStyle.textField,
                                                    localizationParameters: localizationParameters)
             item.identifier = ViewIdentifierBuilder.build(scopeInstance: scope, postfix: "numberContainerItem")

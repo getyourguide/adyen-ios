@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -108,12 +108,22 @@ internal class CardViewController: FormViewController {
         items.numberContainerItem.numberItem.currentBrand?.type.rawValue
     }
 
-    internal var address: PostalAddress? {
+    internal var validAddress: PostalAddress? {
         switch configuration.billingAddressMode {
         case .full:
-            return items.billingAddressItem.value
+            let address = items.billingAddressItem.value
+            guard AddressValidator().isValid(address: address,
+                                             addressMode: configuration.billingAddressMode,
+                                             addressViewModel: items.billingAddressItem.addressViewModel) else {
+                return nil
+            }
+            return address
         case .postalCode:
-            return PostalAddress(postalCode: items.postalCodeItem.value)
+            if items.postalCodeItem.value.isEmpty {
+                return nil
+            } else {
+                return PostalAddress(postalCode: items.postalCodeItem.value)
+            }
         case .none:
             return nil
         }
@@ -164,20 +174,38 @@ internal class CardViewController: FormViewController {
         }
         issuingCountryCode = binInfo.issuingCountryCode
         items.numberContainerItem.update(brands: brands)
+        
+        updateBillingAddressOptionalStatus(brands: brands)
+    }
+
+    private func updateBillingAddressOptionalStatus(brands: [CardBrand]) {
+        let isOptional = configuration.isBillingAddressOptional(for: brands.map(\.type))
+        switch configuration.billingAddressMode {
+        case .full:
+            items.billingAddressItem.updateOptionalStatus(isOptional: isOptional)
+        case .postalCode:
+            items.postalCodeItem.updateOptionalStatus(isOptional: isOptional)
+        case .none:
+            break
+        }
     }
     
-    /// Observe the current brand changes to update all other fields.
+    /// Observe the brand changes to update all other fields.
     private func observeNumberItem() {
-        // `currentBrand` changes are what triggers the update for all other fields
-        // and it can be changed by both `FormCardNumberItemView` with dual brand selections
-        // and from here via binlookup response
-        observe(items.numberContainerItem.numberItem.$currentBrand) { [weak self] newBrand in
+        // `initialBrand` is udpated in cardNumberItem after binlookup response
+        observe(items.numberContainerItem.numberItem.$initialBrand) { [weak self] newBrand in
+            self?.updateFields(from: newBrand)
+        }
+        
+        // `selectedDualBrand` is updated in `FormCardNumberItemView` with dual brand selection
+        observe(items.numberContainerItem.numberItem.$selectedDualBrand) { [weak self] newBrand in
             self?.updateFields(from: newBrand)
         }
     }
     
+    /// Updates relevant other fields after number field changes
     private func updateFields(from brand: CardBrand?) {
-        items.securityCodeItem.isOptional = brand?.isCVCOptional ?? false
+        items.securityCodeItem.displayMode = brand?.securityCodeItemDisplayMode ?? .required
         items.expiryDateItem.isOptional = brand?.isExpiryDateOptional ?? false
         
         let kcpItemsHidden = shouldHideKcpItems(with: issuingCountryCode)
@@ -235,7 +263,7 @@ internal class CardViewController: FormViewController {
     }
 
     private func prefill() {
-        guard let shopperInformation = shopperInformation else { return }
+        guard let shopperInformation else { return }
 
         shopperInformation.billingAddress.map { billingAddress in
             items.billingAddressItem.value = billingAddress
@@ -272,7 +300,7 @@ internal class CardViewController: FormViewController {
     }
     
     private func shouldHideSocialSecurityItem(with brand: CardBrand?) -> Bool {
-        guard let brand = brand else { return true }
+        guard let brand else { return true }
         switch configuration.socialSecurityNumberMode {
         case .show:
             return false
@@ -300,14 +328,24 @@ extension FormValueItem where ValueType == String {
 }
 
 extension CardViewController: CardViewControllerProtocol {
-    func update(storePaymentMethodFieldVisibility isVisible: Bool) {
-        if !isVisible {
-            items.storeDetailsItem.value = false
-        }
-        items.storeDetailsItem.isVisible = isVisible
+  func update(storePaymentMethodFieldVisibility isVisible: Bool) {
+    if !isVisible {
+      items.storeDetailsItem.value = false
     }
+    items.storeDetailsItem.isVisible = isVisible
+  }
+  
+  func update(storePaymentMethodFieldValue isOn: Bool) {
+    items.storeDetailsItem.value = items.storeDetailsItem.isVisible && isOn
+  }
+}
 
-    func update(storePaymentMethodFieldValue isOn: Bool) {
-        items.storeDetailsItem.value = items.storeDetailsItem.isVisible && isOn
+extension CardBrand {
+    internal var securityCodeItemDisplayMode: FormCardSecurityCodeItem.DisplayMode {
+        switch self.cvcPolicy {
+        case .hidden: return .hidden
+        case .optional: return .optional
+        case .required: return .required
+        }
     }
 }

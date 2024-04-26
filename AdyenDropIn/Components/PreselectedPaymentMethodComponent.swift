@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -78,7 +78,7 @@ internal final class PreselectedPaymentMethodComponent: ComponentLoader,
         
         formViewController.append(listItem)
         formViewController.append(submitButtonItem)
-        if let footnoteItem = footnoteItem {
+        if let footnoteItem {
             formViewController.append(footnoteItem.addingDefaultMargins())
         }
         formViewController.append(FormSpacerItem())

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -23,7 +23,7 @@ import UIKit
  - SeeAlso:
  [Implementation Reference](https://docs.adyen.com/online-payments/ios/drop-in)
  */
-public final class DropInComponent: NSObject, PresentableComponent {
+public final class DropInComponent: NSObject, PresentableComponent, LoadingComponent {
 
     private var configuration: Configuration
 
@@ -87,7 +87,6 @@ public final class DropInComponent: NSObject, PresentableComponent {
     ///
     /// - Parameter action: The action to handle.
     public func handle(_ action: Action) {
-        rootComponent.stopLoadingIfNeeded()
         actionComponent.handle(action)
     }
 
@@ -256,7 +255,8 @@ public final class DropInComponent: NSObject, PresentableComponent {
         paymentInProgress = false
     }
 
-    internal func stopLoading() {
+    public func stopLoading() {
+        paymentInProgress = false
         (rootComponent as? ComponentLoader)?.stopLoading()
         selectedPaymentComponent?.stopLoadingIfNeeded()
     }
@@ -270,7 +270,11 @@ public final class DropInComponent: NSObject, PresentableComponent {
         (component as? PreApplePayComponent)?.presentationDelegate = self
         
         component._isDropIn = true
-        component.payment = configuration.payment
+        if let payment = configuration.payment, let remainingAmount = component.order?.remainingAmount {
+            component.payment = Payment(amount: remainingAmount, countryCode: payment.countryCode)
+        } else {
+            component.payment = configuration.payment
+        }
     }
 }
 

@@ -110,19 +110,34 @@ extension DropInComponent: PreselectedPaymentMethodComponentDelegate {
     }
 }
 
-extension DropInComponent: PresentationDelegate {
+extension DropInComponent: NavigationDelegate {
 
     /// :nodoc:
     public func present(component: PresentableComponent) {
         navigationController.present(asModal: component)
     }
+
+    /// :nodoc:
+    public func dismiss(completion: (() -> Void)?) {
+        navigationController.dismiss(animated: true, completion: completion)
+    }
 }
 
 extension DropInComponent: FinalizableComponent {
 
+    public func didFinalize(with success: Bool, completion: (() -> Void)?) {
+        stopLoading()
+        if let component = selectedPaymentComponent {
+            component.finalizeIfNeeded(with: success, completion: completion)
+        } else {
+            completion?()
+        }
+    }
+
     /// Stops loading and finalize DropIn's selected payment if necessary.
     /// This method must be called after certain payment methods (e.x. ApplePay)
     /// - Parameter success: Status of the payment.
+    @available(*, deprecated, message: "Use didFinalize(with:, completion:) instead.")
     public func didFinalize(with success: Bool) {
         stopLoading()
         selectedPaymentComponent?.finalizeIfNeeded(with: success)
@@ -134,7 +149,7 @@ extension DropInComponent: ReadyToSubmitPaymentComponentDelegate {
     /// :nodoc:
     public func showConfirmation(for component: InstantPaymentComponent, with order: PartialPaymentOrder?) {
         let newRoot = preselectedPaymentMethodComponent(for: component, onCancel: { [weak self] in
-            guard let order = order else { return }
+            guard let order else { return }
             self?.partialPaymentDelegate?.cancelOrder(order)
         })
         navigationController.present(root: newRoot)

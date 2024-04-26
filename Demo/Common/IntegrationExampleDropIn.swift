@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -16,7 +16,7 @@ extension IntegrationExample {
     // MARK: - DropIn Component
 
     internal func presentDropInComponent() {
-        guard let paymentMethods = paymentMethods else { return }
+        guard let paymentMethods else { return }
         let configuration = DropInComponent.Configuration(apiContext: apiContext)
         configuration.applePay = .init(summaryItems: ConfigurationConstants.applePaySummaryItems,
                                        merchantIdentifier: ConfigurationConstants.applePayMerchantIdentifier)
