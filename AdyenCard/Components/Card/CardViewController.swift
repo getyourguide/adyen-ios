@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -107,8 +107,36 @@ internal class CardViewController: FormViewController {
     internal var selectedBrand: String? {
         items.numberContainerItem.numberItem.currentBrand?.type.rawValue
     }
+    
+    internal var validAddress: PostalAddress? {
+        guard let address = address, isAddressValid(address: address) else { return nil }
+        return address
+    }
 
-    internal var address: PostalAddress? {
+    private func isAddressValid(address: PostalAddress) -> Bool {
+        let fieldsValues: [String?]
+        
+        switch configuration.billingAddressMode {
+        case .full:
+            fieldsValues = [address.city,
+                            address.country,
+                            address.postalCode,
+                            address.stateOrProvince,
+                            address.street,
+                            address.houseNumberOrName]
+        case .postalCode:
+            fieldsValues = [address.postalCode]
+        case .none:
+            fieldsValues = []
+        }
+        
+        let trimmedFieldsValues = fieldsValues.map {
+            $0?.trimmingCharacters(in: .whitespaces).adyen.nilIfEmpty
+        }
+        return trimmedFieldsValues.compactMap { $0 }.count == fieldsValues.count
+    }
+
+    private var address: PostalAddress? {
         switch configuration.billingAddressMode {
         case .full:
             return items.billingAddressItem.value
@@ -164,6 +192,20 @@ internal class CardViewController: FormViewController {
         }
         issuingCountryCode = binInfo.issuingCountryCode
         items.numberContainerItem.update(brands: brands)
+        
+        updateBillingAddressOptionalStatus(brands: brands)
+    }
+
+    private func updateBillingAddressOptionalStatus(brands: [CardBrand]) {
+        let isOptional = configuration.isBillingAddressOptional(for: brands.map(\.type))
+        switch configuration.billingAddressMode {
+        case .full:
+            items.billingAddressItem.updateOptionalStatus(isOptional: isOptional)
+        case .postalCode:
+            items.postalCodeItem.updateOptionalStatus(isOptional: isOptional)
+        case .none:
+            break
+        }
     }
     
     /// Observe the current brand changes to update all other fields.

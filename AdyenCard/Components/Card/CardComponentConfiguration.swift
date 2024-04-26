@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -74,6 +74,34 @@ extension CardComponent {
         /// List of ISO country codes that is supported for the billing address.
         /// When nil, all countries are provided.
         public var billingAddressCountryCodes: [String]?
+        
+        /// Indicates the requirement level of the address fields.
+        public var billingAddressRequirementPolicy: RequirementPolicy = .required
+        
+        /// Indicates the requirement level of a field.
+        public enum RequirementPolicy {
+            
+            /// Field is required.
+            case required
+            
+            /// Field is optional.
+            case optional
+            
+            /// Field is optional only for provided card types.
+            case optionalForCardTypes(Set<CardType>)
+        }
+        
+        /// :nodoc:
+        internal func isBillingAddressOptional(for cardTypes: [CardType]) -> Bool {
+            switch billingAddressRequirementPolicy {
+            case .required:
+                return false
+            case .optional:
+                return true
+            case let .optionalForCardTypes(optionalCardTypes):
+                return optionalCardTypes.isDisjoint(with: cardTypes) == false
+            }
+        }
 
         /// Indicates mode of how to display the payment button item.
         public var paymentStyle: PaymentStyle
@@ -95,6 +123,7 @@ extension CardComponent {
         ///   - installmentConfiguration: Configuration for installments. Defaults to `nil`.
         ///   - billingAddressCountryCodes: List of ISO country codes that is supported for the billing address.
         ///   Defaults to `nil`, which equals to all countries.
+        ///   - billingAddressOptionalForBrands: Card brands for which the billing address fields should be optional.
         ///   - paymentStyle: Indicates mode of how to display the payment button item.
         ///   Defaults to .immediate.
         public init(showsHolderNameField: Bool = false,
@@ -107,6 +136,7 @@ extension CardComponent {
                     allowedCardTypes: [CardType]? = nil,
                     installmentConfiguration: InstallmentConfiguration? = nil,
                     billingAddressCountryCodes: [String]? = nil,
+                    billingAddressRequirementPolicy: RequirementPolicy = .required,
                     paymentStyle: PaymentStyle = .immediate) {
             self.showsHolderNameField = showsHolderNameField
             self.showsSecurityCodeField = showsSecurityCodeField
@@ -119,6 +149,7 @@ extension CardComponent {
             self.installmentConfiguration = installmentConfiguration
             self.billingAddressCountryCodes = billingAddressCountryCodes
             self.paymentStyle = paymentStyle
+            self.billingAddressRequirementPolicy = billingAddressRequirementPolicy
         }
 
         internal func bcmcConfiguration() -> Configuration {

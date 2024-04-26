@@ -70,6 +70,13 @@ public class CardComponent: PublicKeyConsumer,
         }
     }
     
+    /// The partial payment order if any.
+    public var order: PartialPaymentOrder? {
+        didSet {
+            storedCardComponent?.order = order
+        }
+    }
+    
     /// Initializes the card component.
     ///
     /// - Parameters:
@@ -157,9 +164,13 @@ public class CardComponent: PublicKeyConsumer,
         }
         var component: PaymentComponent & PresentableComponent
         if configuration.stored.showsSecurityCodeField {
-            component = StoredCardComponent(storedCardPaymentMethod: paymentMethod, apiContext: apiContext)
+            let storedComponent = StoredCardComponent(storedCardPaymentMethod: paymentMethod, apiContext: apiContext)
+            storedComponent.localizationParameters = localizationParameters
+            component = storedComponent
         } else {
-            component = StoredPaymentMethodComponent(paymentMethod: paymentMethod, apiContext: apiContext)
+            let storedComponent = StoredPaymentMethodComponent(paymentMethod: paymentMethod, apiContext: apiContext)
+            storedComponent.localizationParameters = localizationParameters
+            component = storedComponent
         }
         component.payment = payment
         return component

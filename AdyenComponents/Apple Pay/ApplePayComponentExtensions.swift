@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -13,10 +13,13 @@ extension ApplePayComponent: PKPaymentAuthorizationViewControllerDelegate {
     
     /// :nodoc:
     public func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-        dismiss { [weak self] in
-            guard let self = self, self.success == false else { return }
+        paymentAuthorizationViewController = nil
+        guard case let .finalized(completion) = state else {
             self.delegate?.didFail(with: ComponentError.cancelled, from: self)
+            return
         }
+
+        completion?()
     }
     
     /// :nodoc:
@@ -29,7 +32,7 @@ extension ApplePayComponent: PKPaymentAuthorizationViewControllerDelegate {
             return
         }
 
-        paymentAuthorizationCompletion = completion
+        state = .paid(completion)
         let token = payment.token.paymentData.base64EncodedString()
         let network = payment.token.paymentMethod.network?.rawValue ?? ""
         let billingContact = payment.billingContact
@@ -40,7 +43,7 @@ extension ApplePayComponent: PKPaymentAuthorizationViewControllerDelegate {
                                       billingContact: billingContact,
                                       shippingContact: shippingContact)
         
-        submit(data: PaymentComponentData(paymentMethodDetails: details, amount: self.amountToPay, order: order))
+        submit(data: PaymentComponentData(paymentMethodDetails: details, amount: internalPayment.amount, order: order))
     }
 }
 
@@ -115,6 +118,18 @@ extension ApplePayComponent {
             paymentRequest.billingContact = billingContact
             return paymentRequest
         }
+
+        public mutating func update(amount: Amount, localeIdentifier: String?) {
+            var newItems = summaryItems
+            guard let lastItem = newItems.last else { return }
+
+            newItems = newItems.dropLast()
+            let decimalAmount = AmountFormatter.decimalAmount(amount.value,
+                                                              currencyCode: amount.currencyCode,
+                                                              localeIdentifier: localeIdentifier)
+            newItems.append(PKPaymentSummaryItem(label: lastItem.label, amount: decimalAmount))
+            summaryItems = newItems
+        }
     }
 
     // Adyen supports: interac, visa, mc, electron, maestro, amex, jcb, discover, elodebit, elo.
@@ -179,6 +194,7 @@ extension PKPaymentNetwork {
 
     internal var adyenName: String {
         if self == .masterCard { return "mc" }
+        if #available(iOS 11.2, *), self == .cartesBancaires { return "cartebancaire" }
         return self.rawValue.lowercased()
     }
 

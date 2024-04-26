@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Adyen N.V.
+// Copyright (c) 2022 Adyen N.V.
 //
 // This file is open source and available under the MIT license. See the LICENSE file for more info.
 //
@@ -33,7 +33,7 @@ open class FormViewController: UIViewController, Localizable, KeyboardObserver, 
     /// - Parameter style: The `FormViewController` UI style.
     public init(style: ViewStyle) {
         self.style = style
-        super.init(nibName: nil, bundle: nil)
+        super.init(nibName: nil, bundle: Bundle(for: FormViewController.self))
         startObserving()
     }
 
