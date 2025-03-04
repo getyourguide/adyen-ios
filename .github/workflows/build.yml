@@ -4,8 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches:
-    - develop
-    
+      - develop
+
+
+concurrency:
+  group: ${{ github.workflow }}${{ github.ref_name != github.event.repository.default_branch && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.ref_name != github.event.repository.default_branch }}
 jobs:
   tests:
     runs-on: ${{ matrix.os }}
@@ -14,77 +18,74 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        
-        - version: '16.4'
-          runtime: 'iOS-16-4'
-          device: 'iPhone 14'
-          displayname: 'iPhone-14'
-          os: 'macos-13-xl'
-          xcode_version: '14.3'
-          needs_custom_sim: false # Takes the shipped simulator that comes with Xcode 14
-        
-        - version: '15.0'
-          runtime: 'iOS-15-0'
-          device: 'iPhone 13'
-          displayname: 'iPhone-13'
-          os: 'macos-12-xl'
-          needs_custom_sim: true
-        
-        - version: '14.2'
-          device: 'iPhone 12'
-          displayname: 'iPhone-12'
-          runtime: 'iOS-14-2'
-          os: 'macos-12-xl'
-          needs_custom_sim: true
-          
-        - version: '13.7'
-          runtime: 'iOS-13-7'
-          device: 'iPhone 11'
-          displayname: 'iPhone-11'
-          os: 'macos-12-xl'
-          needs_custom_sim: true
-          
+          - version: '16.4'
+            runtime: 'iOS-16-4'
+            device: 'iPhone 14'
+            displayname: 'iPhone-14'
+            os: 'macos-13-xl'
+            xcode_version: '14.3'
+            needs_custom_sim: false # Takes the shipped simulator that comes with Xcode 14
+          - version: '15.0'
+            runtime: 'iOS-15-0'
+            device: 'iPhone 13'
+            displayname: 'iPhone-13'
+            os: 'macos-12-xl'
+            needs_custom_sim: true
+
+          - version: '14.2'
+            device: 'iPhone 12'
+            displayname: 'iPhone-12'
+            runtime: 'iOS-14-2'
+            os: 'macos-12-xl'
+            needs_custom_sim: true
+
+          - version: '13.7'
+            runtime: 'iOS-13-7'
+            device: 'iPhone 11'
+            displayname: 'iPhone-11'
+            os: 'macos-12-xl'
+            needs_custom_sim: true
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: n1hility/cancel-previous-runs@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+      - uses: n1hility/cancel-previous-runs@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Prepare custom devices
-      run: |
-        sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
+      - name: Prepare custom devices
+        run: |
+          sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
 
-    - name: Select Xcode ${{ matrix.xcode_version }}
-      if: matrix.xcode_version != ''
-      run: |
-        ls /Applications/Xcode_*.app
-        sudo xcode-select -s /Applications/Xcode_${xcode_version}.app/Contents/Developer
-      env:
-        xcode_version: ${{ matrix.xcode_version }}
+      - name: Select Xcode ${{ matrix.xcode_version }}
+        if: matrix.xcode_version != ''
+        run: |
+          ls /Applications/Xcode_*.app
+          sudo xcode-select -s /Applications/Xcode_${xcode_version}.app/Contents/Developer
+        env:
+          xcode_version: ${{ matrix.xcode_version }}
 
-    - name: Download simulator if needed (${{ matrix.version }})
-      if: matrix.needs_custom_sim
-      run: |
-        xcversion simulators --install="iOS ${version}"
-      env:
-        version: ${{ matrix.version }}
+      - name: Download simulator if needed (${{ matrix.version }})
+        if: matrix.needs_custom_sim
+        run: |
+          xcversion simulators --install="iOS ${version}"
+        env:
+          version: ${{ matrix.version }}
 
-    - name: Create simulator ${{ matrix.version }}
-      run: |
-        xcrun simctl list devices ${version}
-        xcrun simctl create ${displayname} "${device}" "com.apple.CoreSimulator.SimRuntime.${runtime}"
-      env:
-        version: ${{ matrix.version }}
-        displayname: ${{ matrix.displayname }}
-        device: ${{ matrix.device }}
-        runtime: ${{ matrix.runtime }}
+      - name: Create simulator ${{ matrix.version }}
+        run: |
+          xcrun simctl list devices ${version}
+          xcrun simctl create ${displayname} "${device}" "com.apple.CoreSimulator.SimRuntime.${runtime}"
+        env:
+          version: ${{ matrix.version }}
+          displayname: ${{ matrix.displayname }}
+          device: ${{ matrix.device }}
+          runtime: ${{ matrix.runtime }}
 
-    - name: Build and test
-      run: |
-        xcodebuild build test -project ${project} -scheme "${scheme}" ${params} -destination "${destination}" | xcpretty --utf --color && exit ${PIPESTATUS[0]}
-      env:
-        project: 'Adyen.xcodeproj'
-        params: "-skipPackagePluginValidation"
-        scheme: 'IntegrationUIKitTests'
-        destination: "OS=${{ matrix.version }},name=${{ matrix.displayname }}"
-
+      - name: Build and test
+        run: |
+          xcodebuild build test -project ${project} -scheme "${scheme}" ${params} -destination "${destination}" | xcpretty --utf --color && exit ${PIPESTATUS[0]}
+        env:
+          project: 'Adyen.xcodeproj'
+          params: "-skipPackagePluginValidation"
+          scheme: 'IntegrationUIKitTests'
+          destination: "OS=${{ matrix.version }},name=${{ matrix.displayname }}"

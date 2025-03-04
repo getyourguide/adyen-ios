@@ -1,20 +1,24 @@
 name: Publish Adyen.podspec
 on: [workflow_dispatch]
+
+concurrency:
+  group: ${{ github.workflow }}${{ github.ref_name != github.event.repository.default_branch && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.ref_name != github.event.repository.default_branch }}
 jobs:
 
   publish:
     runs-on: macos-13
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Select latest Xcode
-      uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: latest-stable
+      - name: Select latest Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
 
-    - name: Publish Adyen.podspec
-      run: |
-        gem install cocoapods
-        pod trunk push Adyen.podspec --allow-warnings
-      env:
-        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+      - name: Publish Adyen.podspec
+        run: |
+          gem install cocoapods
+          pod trunk push Adyen.podspec --allow-warnings
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
