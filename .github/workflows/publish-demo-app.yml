@@ -1,5 +1,8 @@
 name: Publish Demo App
 on: [workflow_dispatch]
+permissions:
+  contents: write
+
 jobs:
 
   Publish:

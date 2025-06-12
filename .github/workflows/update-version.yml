@@ -5,6 +5,10 @@ on:
       newVersion:
         description: 'The new version'
         required: true
+permissions:
+  contents: write
+  pull-requests: read
+
 jobs:
 
   Update:

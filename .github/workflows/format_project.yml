@@ -1,5 +1,9 @@
 name: Format project
 on: [workflow_dispatch]
+permissions:
+  contents: write
+  pull-requests: read
+
 jobs:
 
   Update:

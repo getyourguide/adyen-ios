@@ -3,6 +3,11 @@ name: Cancel duplicate work flows
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+permissions:
+  issues: read
+  contents: read
+  pull-requests: read
+
 jobs:
   cancel-multiple-workflow-runs:
     name: "Cancel the self CI workflow run"

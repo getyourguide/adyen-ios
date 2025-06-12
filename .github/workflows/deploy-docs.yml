@@ -1,6 +1,10 @@
 name: Deploy Docs
 on: [workflow_dispatch]
 
+permissions:
+  contents: read
+  deployments: read
+
 jobs:
 
   Deploy:
