@@ -3,5 +3,5 @@
   "extends": [
     "config:base"
   ],
-  "labels": ["chore"]
+  "labels": ["chore", "dependencies"]
 }
