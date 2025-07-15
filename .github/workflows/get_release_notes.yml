@@ -1,5 +1,10 @@
 name: Get Release notes
 on: [workflow_dispatch]
+permissions:
+  pull-requests: read
+  contents: write
+  issues: read
+
 jobs:
   release_notes:
     runs-on: ubuntu-latest

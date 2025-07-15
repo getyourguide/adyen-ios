@@ -6,6 +6,9 @@ on:
   release:
     types: [published]
 
+permissions:
+  deployments: read
+
 jobs:
   publish-cocoapods:
     name: 🥜 Publish Cocoapods

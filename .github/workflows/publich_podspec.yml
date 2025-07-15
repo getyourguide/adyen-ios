@@ -1,5 +1,8 @@
 name: Publish Adyen.podspec
 on: [workflow_dispatch]
+permissions:
+  contents: write
+
 jobs:
 
   publish:
