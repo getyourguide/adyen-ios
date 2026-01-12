@@ -6,13 +6,13 @@ jobs:
   Deploy:
     runs-on: macos-13
     steps:
-    - uses: actions/checkout@v4
-    - uses: n1hility/cancel-previous-runs@v3
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+    - uses: n1hility/cancel-previous-runs@e709d8e41b16d5d0b8d529d293c5e126c57dc022 # v3.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Select latest Xcode
-      uses: maxim-lobanov/setup-xcode@v1
+      uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
       with:
         xcode-version: latest-stable
 
@@ -21,14 +21,14 @@ jobs:
       id: get-current-marketing-version
 
     - name: Deploy to current version 🚀
-      uses: peaceiris/actions-gh-pages@v4
+      uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs/html
         destination_dir: ./${{ steps.get-current-marketing-version.outputs.MARKETING_VERSION }}
         
     - name: Deploy to root 🚀
-      uses: peaceiris/actions-gh-pages@v4
+      uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs/redirect

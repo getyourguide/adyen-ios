@@ -9,49 +9,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Cancel build"
-        uses: potiuk/cancel-workflow-runs@master
+        uses: potiuk/cancel-workflow-runs@e9e87cb7738dbb999654aa90d69359d62c9e4eae # v3
         with:
           cancelMode: allDuplicates
           cancelFutureDuplicates: true
           token: ${{ secrets.GITHUB_TOKEN }}
           workflowFileName: build.yml
       - name: "Cancel pr scan"
-        uses: potiuk/cancel-workflow-runs@master
+        uses: potiuk/cancel-workflow-runs@e9e87cb7738dbb999654aa90d69359d62c9e4eae # v3
         with:
           cancelMode: allDuplicates
           cancelFutureDuplicates: true
           token: ${{ secrets.GITHUB_TOKEN }}
           workflowFileName: pr_scan.yml
       - name: "Cancel spell check"
-        uses: potiuk/cancel-workflow-runs@master
+        uses: potiuk/cancel-workflow-runs@e9e87cb7738dbb999654aa90d69359d62c9e4eae # v3
         with:
           cancelMode: allDuplicates
           cancelFutureDuplicates: true
           token: ${{ secrets.GITHUB_TOKEN }}
           workflowFileName: spell-check.yml
       - name: "Cancel test_cocoapods_integration"
-        uses: potiuk/cancel-workflow-runs@master
+        uses: potiuk/cancel-workflow-runs@e9e87cb7738dbb999654aa90d69359d62c9e4eae # v3
         with:
           cancelMode: allDuplicates
           cancelFutureDuplicates: true
           token: ${{ secrets.GITHUB_TOKEN }}
           workflowFileName: test_cocoapods_integration.yml
       - name: "Cancel test-carthage-integration"
-        uses: potiuk/cancel-workflow-runs@master
+        uses: potiuk/cancel-workflow-runs@e9e87cb7738dbb999654aa90d69359d62c9e4eae # v3
         with:
           cancelMode: allDuplicates
           cancelFutureDuplicates: true
           token: ${{ secrets.GITHUB_TOKEN }}
           workflowFileName: test-carthage-integration.yml
       - name: "Cancel test-SPM-integration"
-        uses: potiuk/cancel-workflow-runs@master
+        uses: potiuk/cancel-workflow-runs@e9e87cb7738dbb999654aa90d69359d62c9e4eae # v3
         with:
           cancelMode: allDuplicates
           cancelFutureDuplicates: true
           token: ${{ secrets.GITHUB_TOKEN }}
           workflowFileName: test-SPM-integration.yml
       - name: "Cancel validate_pr_labels_and_release_notes"
-        uses: potiuk/cancel-workflow-runs@master
+        uses: potiuk/cancel-workflow-runs@e9e87cb7738dbb999654aa90d69359d62c9e4eae # v3
         with:
           cancelMode: allDuplicates
           cancelFutureDuplicates: true
