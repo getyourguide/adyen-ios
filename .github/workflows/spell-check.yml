@@ -9,10 +9,10 @@ jobs:
   setup:
     runs-on: macos-13
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       with:
         fetch-depth: 0
-    - uses: n1hility/cancel-previous-runs@v3
+    - uses: n1hility/cancel-previous-runs@e709d8e41b16d5d0b8d529d293c5e126c57dc022 # v3.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 

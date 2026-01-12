@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           fetch-depth: 0
 
@@ -29,13 +29,13 @@ jobs:
           PROJECT_ROOT: ${{ github.workspace }}
 
       - name: Validate labels
-        uses: jesusvasquez333/verify-pr-label-action@v1.4.0
+        uses: jesusvasquez333/verify-pr-label-action@657d111bbbe13e22bbd55870f1813c699bde1401 # v1.4.0
         with:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
           valid-labels: ${{ steps.get-allowed_labels.outputs.LABELS }}
 
       - name: Get PR labels
-        uses: joerick/pr-labels-action@v1.0.9
+        uses: joerick/pr-labels-action@0543b277721e852d821c6738d449f2f4dea03d5f # v1.0.9
         id: pr-labels
 
       - run: |

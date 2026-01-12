@@ -5,15 +5,15 @@ jobs:
   Publish:
     runs-on: macos-12
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       with:
         fetch-depth: 0
-    - uses: n1hility/cancel-previous-runs@v3
+    - uses: n1hility/cancel-previous-runs@e709d8e41b16d5d0b8d529d293c5e126c57dc022 # v3.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Select latest Xcode
-      uses: maxim-lobanov/setup-xcode@v1
+      uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
       with:
         xcode-version: latest-stable
 
